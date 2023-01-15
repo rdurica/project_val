@@ -6,6 +6,7 @@ application:
 		*: App\*Module\Presenter\*Presenter
 
 session:
+	autoStart: always
 	expiration: 14 days
 
 di:
@@ -15,6 +16,7 @@ di:
 
 extensions:
   # Common
+  translation: Contributte\Translation\DI\TranslationExtension
   console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
   nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
   nettrine.cache: Nettrine\Cache\DI\CacheExtension
@@ -28,7 +30,6 @@ extensions:
   nettrine.orm.cache: Nettrine\ORM\DI\OrmCacheExtension
   nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension
   nettrine.orm.attributes: Nettrine\ORM\DI\OrmAttributesExtension
-
 
 nettrine.orm:
   configuration:
@@ -45,3 +46,11 @@ nettrine.migrations:
   table: doctrine_migrations
   directory: %appDir%/Migration
   namespace: App\Migration
+
+translation:
+	locales:
+		whitelist: [en, cs]
+		default: en
+		fallback: [en]
+	dirs:
+		- %appDir%/Translation
