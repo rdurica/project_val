@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  project_val:
+    build:
+      dockerfile: build/Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - .:/app/
+      - ./src/log/apache2:/var/log/apache2
+      - ./build/xdebug.ini:/usr/example/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./build/error_reporting.ini:/usr/example/etc/php/conf.d/error_reporting.ini
+    networks:
+      - robbyte_dev
+networks:
+  robbyte_dev:
+    external: true

@@ -1,0 +1,12 @@
+parameters:
+
+nettrine.dbal:
+  debug:
+    panel: %debugMode%
+    sourcePaths: [%appDir%]
+  connection:
+        driver: pdo_mysql
+        host: host
+        user: user
+        password: password
+        dbname: databaseName
