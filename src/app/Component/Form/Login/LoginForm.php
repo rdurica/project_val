@@ -56,7 +56,7 @@ final class LoginForm extends AbstractComponent
             /** @var SimpleIdentity $userIdentity */
             $userIdentity = $this->authentication->authenticate($values->username, $values->password);
             $this->user->login($userIdentity);
-            $this->presenter->flashMessage("messages.successfullyLoggedIn");
+            $this->presenter->flashMessage($this->translator->trans("messages.successfullyLoggedIn"), "success");
         } catch (AuthenticationException $authenticationException){
             $this->presenter->flashMessage($this->translator->trans("messages.incorrectUsernameOrPassword"), "danger");
         }

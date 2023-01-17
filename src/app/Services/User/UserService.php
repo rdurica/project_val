@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Services\User;
 
 use App\Entity\User;
-use App\Exception\CoreException;
 use App\Exception\AccountExistsException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
