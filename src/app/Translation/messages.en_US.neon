@@ -1,6 +1,11 @@
 user:
     email: "Email"
+    username: "Username"
     password: "Password"
 
 button:
     login: "Login"
+
+messages:
+    successfullyLoggedIn: "Login was successfull"
+    incorrectUsernameOrPassword: "Incorrect username or password"
