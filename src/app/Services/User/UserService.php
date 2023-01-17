@@ -38,25 +38,19 @@ final class UserService implements Authenticator, AuthenticationInterface, Accou
      */
     public function authenticate(string $user, string $password): IIdentity
     {
-        $this->createAccount("rdurica", "r.durica@gmail.com", "google");
         /** @var ?User $userEntity */
         $userEntity = $this->em->getRepository("App\\Entity\\User")->findOneBy(["username" => $user,]);
 
         if (!$userEntity){
             throw new AuthenticationException("User not found");
         }
-        if ($userEntity->getPassword() !== $this->getPasswordHash($password)){
+        if (!$this->passwords->verify($password, $userEntity->getPassword())){
             throw new AuthenticationException("Incorrect Password");
         }
 
         return new SimpleIdentity($userEntity->getId(), roles: [], data: [
             "email" => $userEntity->getEmail(),
         ]);
-    }
-
-    private function getPasswordHash(string $plainPassword): string
-    {
-        return $this->passwords->hash($plainPassword);
     }
 
     /**
