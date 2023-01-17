@@ -4,6 +4,9 @@ declare(strict_types=1);
 namespace App\Services\User;
 
 use App\Entity\User;
+use App\Exception\CoreException;
+use App\Exception\AccountExistsException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
@@ -35,6 +38,7 @@ final class UserService implements Authenticator, AuthenticationInterface, Accou
      */
     public function authenticate(string $user, string $password): IIdentity
     {
+        $this->createAccount("rdurica", "r.durica@gmail.com", "google");
         /** @var ?User $userEntity */
         $userEntity = $this->em->getRepository("App\\Entity\\User")->findOneBy(["username" => $user,]);
 
@@ -55,9 +59,27 @@ final class UserService implements Authenticator, AuthenticationInterface, Accou
         return $this->passwords->hash($plainPassword);
     }
 
+    /**
+     * @param string $username
+     * @param string $email
+     * @param string $plainPassword
+     * @return User
+     * @throws AccountExistsException
+     */
     public function createAccount(string $username, string $email, string $plainPassword): User
     {
-        // TODO: Implement add() method.
+        $user = new User();
+        $user->setEmail($email)
+            ->setUsername($username)
+            ->setPassword($this->passwords->hash($plainPassword));
+        try {
+            $this->em->persist($user);
+            $this->em->flush();
+        }catch (UniqueConstraintViolationException $e){
+            throw new AccountExistsException();
+        }
+
+        return $user;
     }
 
     public function removeAccountById(int $id): void

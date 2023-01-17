@@ -30,6 +30,12 @@ class User
     #[ORM\Column(type: "datetime", options: ["default" => "CURRENT_TIMESTAMP",])]
     private DateTime $registrationDate;
 
+    public function __construct()
+    {
+        $this->isEnabled = true;
+        $this->registrationDate = new DateTime();
+    }
+
     /**
      * @return int
      */
