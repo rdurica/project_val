@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Component\Form\Login;
@@ -57,7 +58,7 @@ final class LoginForm extends AbstractComponent
             $userIdentity = $this->authentication->authenticate($values->username, $values->password);
             $this->user->login($userIdentity);
             $this->presenter->flashMessage($this->translator->trans("messages.successfullyLoggedIn"), "success");
-        } catch (AuthenticationException $authenticationException){
+        } catch (AuthenticationException $authenticationException) {
             $this->presenter->flashMessage($this->translator->trans("messages.incorrectUsernameOrPassword"), "danger");
         }
         $this->redirect("this");

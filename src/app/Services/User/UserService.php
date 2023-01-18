@@ -38,7 +38,7 @@ final class UserService implements Authenticator, AuthenticationInterface, Accou
     public function authenticate(string $user, string $password): IIdentity
     {
         /** @var ?User $userEntity */
-        $userEntity = $this->em->getRepository("App\\Entity\\User")->findOneBy(["username" => $user,]);
+        $userEntity = $this->em->getRepository(User::class)->findOneBy(["username" => $user,]);
 
         if (!$userEntity){
             throw new AuthenticationException("User not found");

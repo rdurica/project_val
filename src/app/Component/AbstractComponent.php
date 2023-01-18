@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Component;
@@ -16,5 +17,5 @@ abstract class AbstractComponent extends Control
         $this->translator = $translator;
     }
 
-    public abstract function render(): void;
+    abstract public function render(): void;
 }

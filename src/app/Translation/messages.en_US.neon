@@ -5,6 +5,7 @@ user:
 
 button:
     login: "Login"
+    logOut: "Log out"
 
 messages:
     successfullyLoggedIn: "Login was successfull"
