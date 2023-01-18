@@ -6,9 +6,5 @@
 </div>
 
 <div id="content">
-    {if !$user->isLoggedIn()}
-        {control loginForm}
-    {else}
-        <a n:href="LogOut!">{_messages.button.logOut}</a>
-    {/if}
+    {control loginForm}
 </div>

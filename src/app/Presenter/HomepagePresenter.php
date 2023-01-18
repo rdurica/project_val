@@ -8,16 +8,31 @@ use App\Component\Form\Login\ILoginForm;
 use App\Component\Form\Login\LoginForm;
 use Nette\DI\Attributes\Inject;
 
+/**
+ * This presenter is only for login purposes
+ */
 final class HomepagePresenter extends AbstractPresenter
 {
     #[Inject]
     public ILoginForm $loginForm;
 
-    public function handleLogOut(): void
+    /**
+     * If user is already logged in redirect him to projects view
+     * @return void
+     * @throws \Nette\Application\AbortException
+     */
+    protected function startup(): void
     {
-        $this->getUser()->logout(true);
+        parent::startup();
+        if ($this->getUser()->isLoggedIn()) {
+            $this->redirect("Projects:");
+        }
     }
 
+    /**
+     * Login form
+     * @return LoginForm
+     */
     protected function createComponentLoginForm(): LoginForm
     {
         return $this->loginForm->create();

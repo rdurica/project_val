@@ -6,6 +6,9 @@ namespace App\Presenter;
 
 use Nette\Application\UI\Presenter;
 
+/**
+ * All future presenters with public access should inherit from this Presenter
+ */
 abstract class AbstractPresenter extends Presenter
 {
 
