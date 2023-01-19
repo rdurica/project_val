@@ -31,16 +31,16 @@ final class LoginForm extends AbstractComponent
     public function createComponentLoginForm(): Form
     {
         $form = new Form();
-        $form->addText('username', $this->translator->trans('user.username'))
+        $form->addText("username", $this->translator->trans("user.username"))
             ->setRequired()
-            ->setHtmlAttribute('class', 'form-control');
-        $form->addPassword('password', $this->translator->trans('user.password'))
+            ->setHtmlAttribute("class", "form-control")->setHtmlAttribute("id", "floatingInput");
+        $form->addPassword("password", $this->translator->trans("user.password"))
             ->setRequired()
-            ->setHtmlAttribute('class', 'form-control');
-        $form->addSubmit('send', $this->translator->trans('button.login'))
-            ->setHtmlAttribute('class', 'btn btn-info');
+            ->setHtmlAttribute("class", "form-control");
+        $form->addSubmit("login", $this->translator->trans("button.login"))
+            ->setHtmlAttribute("class", "w-100 btn btn-lg btn-primary");
 
-        $form->onSuccess[] = [$this, 'formSucceeded'];
+        $form->onSuccess[] = [$this, "formSucceeded"];
 
         return $form;
     }
@@ -68,7 +68,7 @@ final class LoginForm extends AbstractComponent
 
     public function render(): void
     {
-        $this->getTemplate()->setFile(__DIR__ . '/default.latte');
+        $this->getTemplate()->setFile(__DIR__ . "/default.latte");
         $this->getTemplate()->render();
     }
 }

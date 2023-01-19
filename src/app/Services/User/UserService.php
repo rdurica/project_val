@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Services\User;
@@ -40,14 +41,15 @@ final class UserService implements Authenticator, AuthenticationInterface, Accou
         /** @var ?User $userEntity */
         $userEntity = $this->em->getRepository(User::class)->findOneBy(["username" => $user,]);
 
-        if (!$userEntity){
+        if (!$userEntity) {
             throw new AuthenticationException("User not found");
         }
-        if (!$this->passwords->verify($password, $userEntity->getPassword())){
+        if (!$this->passwords->verify($password, $userEntity->getPassword())) {
             throw new AuthenticationException("Incorrect Password");
         }
 
         return new SimpleIdentity($userEntity->getId(), roles: [], data: [
+            "username" => $userEntity->getUsername(),
             "email" => $userEntity->getEmail(),
         ]);
     }
@@ -68,7 +70,7 @@ final class UserService implements Authenticator, AuthenticationInterface, Accou
         try {
             $this->em->persist($user);
             $this->em->flush();
-        }catch (UniqueConstraintViolationException $e){
+        } catch (UniqueConstraintViolationException $e) {
             throw new AccountExistsException();
         }
 

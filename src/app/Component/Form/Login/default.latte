@@ -1,5 +1,12 @@
 {form loginForm}
-    {label username /}<span style="color: red;"> *</span> {input username}<br>
-    {label password /}<span style="color: red;"> *</span> {input password}<br>
-    {input send}
+    <div class="form-group">
+        {label username /}
+        {input username}
+
+    </div>
+    <div class="form-group mb-4">
+        {label password /}
+        {input password}
+    </div>
+    {input login}
 {/form}

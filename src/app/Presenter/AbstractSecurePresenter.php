@@ -16,7 +16,7 @@ abstract class AbstractSecurePresenter extends AbstractPresenter
      * @return void
      * @throws \Nette\Application\AbortException
      */
-    #[NoReturn] public function handleLogOut(): void
+    #[NoReturn] public function actionLogOut(): void
     {
         $this->getUser()->logout(true);
         $this->redirect("Homepage:");
