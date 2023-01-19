@@ -5,6 +5,7 @@ search:
 			- *Factory
 			- *Facade
 			- I*Form
+			- I*Grid
 
 services:
 	- App\Router\RouterFactory::createRouter

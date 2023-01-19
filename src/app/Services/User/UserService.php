@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Exception\AccountExistsException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
+use Nette\NotImplementedException;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
 use Nette\Security\IIdentity;
@@ -44,6 +45,7 @@ final class UserService implements Authenticator, AuthenticationInterface, Accou
         if (!$userEntity) {
             throw new AuthenticationException("User not found");
         }
+
         if (!$this->passwords->verify($password, $userEntity->getPassword())) {
             throw new AuthenticationException("Incorrect Password");
         }

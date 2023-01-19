@@ -32,7 +32,8 @@
     "nettrine/cache": "^0.3.0",
     "contributte/console": "^0.9.2",
     "nettrine/annotations": "^0.7.0",
-    "contributte/translation": "^2.0"
+    "contributte/translation": "^2.0",
+    "ublaboo/datagrid": "^6.9"
   },
   "require-dev": {
     "nette/tester": "^2.3",

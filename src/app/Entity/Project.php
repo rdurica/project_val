@@ -22,13 +22,13 @@ class Project
     private string $description;
 
     #[ORM\Column(type: "integer", nullable: true)]
-    private int $expectedCost;
+    private ?int $expectedCost;
 
     #[ORM\Column(type: "date", nullable: true)]
-    private DateTime $projectStartDate;
+    private ?DateTime $projectStartDate;
 
     #[ORM\Column(type: "date", nullable: true)]
-    private DateTime $projectEndDate;
+    private ?DateTime $projectEndDate;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(name: "created_by", referencedColumnName: "id")]
@@ -92,7 +92,7 @@ class Project
     /**
      * @return int
      */
-    public function getExpectedCost(): int
+    public function getExpectedCost(): ?int
     {
         return $this->expectedCost;
     }
@@ -111,7 +111,7 @@ class Project
     /**
      * @return DateTime
      */
-    public function getProjectStartDate(): DateTime
+    public function getProjectStartDate(): ?DateTime
     {
         return $this->projectStartDate;
     }
@@ -130,7 +130,7 @@ class Project
     /**
      * @return DateTime
      */
-    public function getProjectEndDate(): DateTime
+    public function getProjectEndDate(): ?DateTime
     {
         return $this->projectEndDate;
     }
