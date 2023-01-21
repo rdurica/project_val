@@ -49,13 +49,15 @@ class ProjectGrid extends AbstractComponent
             ->setConfirmation(
                 new StringConfirmation("Do you really want to delete project: %s?", "title")
             );
-        $grid->addExportCsv('Csv export (all)', 'projects.csv')
+        $grid->addExportCsv('CSV (all)', 'projects.csv')
             ->setIcon("file")
             ->setTitle('Csv export');
-        $grid->addExportCsvFiltered('Csv export (filtered)', 'projects-filter.csv')
+        $grid->addExportCsvFiltered('CSV (filtered)', 'projects-filter.csv')
             ->setIcon("file")
             ->setTitle('Csv export (filtered)');
-
+        $grid->addToolbarButton('Projects:add', 'New project')
+            ->setIcon("plus")
+            ->setClass("btn btn-xs btn-success");
         return $grid;
     }
 
