@@ -10,11 +10,9 @@ use Nette\Application\UI\Control;
 
 abstract class AbstractComponent extends Control
 {
-    protected Translator $translator;
 
-    public function __construct(Translator $translator)
+    public function __construct(protected Translator $translator)
     {
-        $this->translator = $translator;
     }
 
     abstract public function render(): void;

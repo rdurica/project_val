@@ -14,3 +14,5 @@ Thumbs.db
 # Project files
 src/config/database.neon
 src/vendor
+src/log
+src/temp

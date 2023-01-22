@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Component\Form\Project;
 
 use App\Component\AbstractComponent;
-use JetBrains\PhpStorm\NoReturn;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
 use Nette\Utils\ArrayHash;

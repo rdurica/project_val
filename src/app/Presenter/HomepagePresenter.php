@@ -6,6 +6,7 @@ namespace App\Presenter;
 
 use App\Component\Form\Login\ILoginForm;
 use App\Component\Form\Login\LoginForm;
+use Nette\Application\AbortException;
 use Nette\DI\Attributes\Inject;
 
 /**
@@ -19,7 +20,7 @@ final class HomepagePresenter extends AbstractPresenter
     /**
      * If user is already logged in redirect him to projects view
      * @return void
-     * @throws \Nette\Application\AbortException
+     * @throws AbortException
      */
     protected function startup(): void
     {

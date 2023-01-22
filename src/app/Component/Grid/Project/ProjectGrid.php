@@ -17,12 +17,12 @@ use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
 
 class ProjectGrid extends AbstractComponent
 {
-    public EntityManagerInterface $em;
 
-    public function __construct(Translator $translator, EntityManagerInterface $em)
+    public function __construct(
+        protected Translator $translator,
+        private readonly EntityManagerInterface $em)
     {
         parent::__construct($translator);
-        $this->em = $em;
     }
 
     public function createComponentProjectGrid(): DataGrid

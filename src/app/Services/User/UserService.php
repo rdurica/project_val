@@ -8,36 +8,27 @@ use App\Entity\User;
 use App\Exception\AccountExistsException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
-use Nette\NotImplementedException;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
-use Nette\Security\IIdentity;
 use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 
-final class UserService implements Authenticator, AuthenticationInterface, AccountInterface
+final readonly class UserService implements Authenticator, AuthenticationInterface, AccountInterface
 {
 
-    private EntityManagerInterface $em;
-    private Passwords $passwords;
-
-    /**
-     * @param EntityManagerInterface $em
-     * @param Passwords $passwords
-     */
-    public function __construct(EntityManagerInterface $em, Passwords $passwords)
-    {
-        $this->em = $em;
-        $this->passwords = $passwords;
+    public function __construct(
+        private EntityManagerInterface $em,
+        private Passwords $passwords
+    ) {
     }
 
     /**
      * @param string $user username
      * @param string $password
-     * @return IIdentity
+     * @return SimpleIdentity
      * @throws AuthenticationException
      */
-    public function authenticate(string $user, string $password): IIdentity
+    public function authenticate(string $user, string $password): SimpleIdentity
     {
         /** @var ?User $userEntity */
         $userEntity = $this->em->getRepository(User::class)->findOneBy(["username" => $user,]);

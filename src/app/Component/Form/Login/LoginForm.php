@@ -17,15 +17,12 @@ use Nette\Utils\ArrayHash;
 final class LoginForm extends AbstractComponent
 {
 
-    private User $user;
-    private AuthenticationInterface $authentication;
-
-    public function __construct(Translator $translator, AuthenticationInterface $authentication, User $user)
-    {
+    public function __construct(
+        protected Translator $translator,
+        private readonly AuthenticationInterface $authentication,
+        private readonly User $user
+    ) {
         parent::__construct($translator);
-        $this->user = $user;
-        $this->translator = $translator;
-        $this->authentication = $authentication;
     }
 
     public function createComponentLoginForm(): Form
