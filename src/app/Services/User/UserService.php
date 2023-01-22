@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace App\Services\User;
 
 use App\Entity\User;
-use App\Exception\AccountExistsException;
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
 use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 
-final readonly class UserService implements Authenticator, AuthenticationInterface, AccountInterface
+final class UserService implements Authenticator, AuthenticationInterface, AccountInterface
 {
-
     public function __construct(
         private EntityManagerInterface $em,
         private Passwords $passwords
     ) {
     }
+
+
 
     /**
      * @param string $user username
@@ -32,7 +31,6 @@ final readonly class UserService implements Authenticator, AuthenticationInterfa
     {
         /** @var ?User $userEntity */
         $userEntity = $this->em->getRepository(User::class)->findOneBy(["username" => $user,]);
-
         if (!$userEntity) {
             throw new AuthenticationException("User not found");
         }
@@ -52,7 +50,6 @@ final readonly class UserService implements Authenticator, AuthenticationInterfa
      * @param string $email
      * @param string $plainPassword
      * @return User
-     * @throws AccountExistsException
      */
     public function createAccount(string $username, string $email, string $plainPassword): User
     {
@@ -60,12 +57,9 @@ final readonly class UserService implements Authenticator, AuthenticationInterfa
         $user->setEmail($email)
             ->setUsername($username)
             ->setPassword($this->passwords->hash($plainPassword));
-        try {
-            $this->em->persist($user);
-            $this->em->flush();
-        } catch (UniqueConstraintViolationException $e) {
-            throw new AccountExistsException();
-        }
+
+        $this->em->persist($user);
+        $this->em->flush();
 
         return $user;
     }

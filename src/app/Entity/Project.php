@@ -60,7 +60,7 @@ class Project
     }
 
     /**
-     * @param string $title
+     * @param  string $title
      * @return Project
      */
     public function setTitle(string $title): Project
@@ -79,7 +79,7 @@ class Project
     }
 
     /**
-     * @param string $description
+     * @param  string $description
      * @return Project
      */
     public function setDescription(string $description): Project
@@ -98,7 +98,7 @@ class Project
     }
 
     /**
-     * @param int $expectedCost
+     * @param  int $expectedCost
      * @return Project
      */
     public function setExpectedCost(int $expectedCost): Project
@@ -117,7 +117,7 @@ class Project
     }
 
     /**
-     * @param DateTime $projectStartDate
+     * @param  DateTime $projectStartDate
      * @return Project
      */
     public function setProjectStartDate(DateTime $projectStartDate): Project
@@ -136,7 +136,7 @@ class Project
     }
 
     /**
-     * @param DateTime $projectEndDate
+     * @param  DateTime $projectEndDate
      * @return Project
      */
     public function setProjectEndDate(DateTime $projectEndDate): Project
@@ -162,5 +162,4 @@ class Project
     {
         return $this->createdAt;
     }
-
 }

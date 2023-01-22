@@ -11,5 +11,4 @@ use Nette\Application\UI\Presenter;
  */
 abstract class AbstractPresenter extends Presenter
 {
-
 }

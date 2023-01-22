@@ -14,17 +14,20 @@ use Nette;
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\DataGrid\DataSource\DoctrineDataSource;
 use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
+use Ublaboo\DataGrid\Exception\DataGridException;
 
 class ProjectGrid extends AbstractComponent
 {
-
     public function __construct(
         protected Translator $translator,
-        private readonly EntityManagerInterface $em)
-    {
+        private readonly EntityManagerInterface $em
+    ) {
         parent::__construct($translator);
     }
 
+    /**
+     * @throws DataGridException
+     */
     public function createComponentProjectGrid(): DataGrid
     {
         $qb = $this->em->createQueryBuilder();
@@ -36,9 +39,11 @@ class ProjectGrid extends AbstractComponent
         $grid->addColumnText("title", "title")->setFilterText();
         $grid->addColumnDateTime("projectStartDate", "projectStartDate")->setFilterDate();
         $grid->addColumnDateTime("projectEndDate", "projectEndDate")->setFilterDate();
-        $grid->addColumnText("expectedCost", "expectedCost")->setRenderer(function (Project $project) {
-            return "$" . $project->getExpectedCost();
-        })->setFilterText();
+        $grid->addColumnText("expectedCost", "expectedCost")->setRenderer(
+            function (Project $project) {
+                return "$" . $project->getExpectedCost();
+            }
+        )->setFilterText();
         $grid->addAction("detail", "Detail", "Projects:detail")
             ->setIcon("eye")
             ->setClass("btn btn-xs btn-primary");
@@ -73,6 +78,4 @@ class ProjectGrid extends AbstractComponent
         $this->em->remove($project);
         $this->em->flush();
     }
-
-
 }

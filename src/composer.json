@@ -33,11 +33,13 @@
     "contributte/console": "^0.9.2",
     "nettrine/annotations": "^0.7.0",
     "contributte/translation": "^2.0",
-    "ublaboo/datagrid": "^6.9"
+    "ublaboo/datagrid": "^6.9",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "nette/tester": "^2.3",
-    "symfony/thanks": "^1"
+    "symfony/thanks": "^1",
+    "squizlabs/php_codesniffer": "*"
   },
   "autoload": {
     "psr-4": {
@@ -49,5 +51,13 @@
     "allow-plugins": {
       "symfony/thanks": true
     }
+  },
+  "scripts": {
+    "phpcs": "./vendor/bin/phpcs --standard=PSR12 --ignore=app/Migration app/",
+    "phpcbf": "./vendor/bin/phpcbf --standard=PSR12 --ignore=app/Migration app/",
+    "post-install-cmd": [
+      "./vendor/bin/phpcs --config-set colors 1",
+      "./vendor/bin/phpcs --config-set report_width 140"
+    ]
   }
 }

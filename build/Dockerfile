@@ -27,4 +27,4 @@ RUN a2enmod headers
 RUN a2enmod expires
 COPY build/vhost.conf /etc/apache2/sites-available/000-default.conf
 
-WORKDIR /app
+WORKDIR /app/src

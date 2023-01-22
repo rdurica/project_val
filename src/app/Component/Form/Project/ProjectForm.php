@@ -11,11 +11,8 @@ use Nette\Utils\ArrayHash;
 
 class ProjectForm extends AbstractComponent
 {
-
-
     public function createComponentProjectForm(): Form
     {
-        //Todo: Add fields, needs to thing about logic and purpose. What wil be calculated and which fields are needed.Also connect to RabbitMQ and calculate something
         $form = new Form();
         $form->addText("title", "title")
             ->setRequired()
@@ -41,8 +38,8 @@ class ProjectForm extends AbstractComponent
     }
 
     /**
-     * @param Form $form
-     * @param ArrayHash $values
+     * @param  Form      $form
+     * @param  ArrayHash $values
      * @return void
      * @throws AbortException
      */
@@ -56,5 +53,4 @@ class ProjectForm extends AbstractComponent
         $this->getTemplate()->setFile(__DIR__ . "/default.latte");
         $this->getTemplate()->render();
     }
-
 }

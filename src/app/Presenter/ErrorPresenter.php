@@ -9,12 +9,13 @@ use Nette\Application\Responses;
 use Nette\Http;
 use Tracy\ILogger;
 
-
 final class ErrorPresenter implements Nette\Application\IPresenter
 {
     use Nette\SmartObject;
 
-    /** @var ILogger */
+    /**
+     * @var ILogger
+     */
     private ILogger $logger;
 
 
@@ -37,7 +38,7 @@ final class ErrorPresenter implements Nette\Application\IPresenter
         return new Responses\CallbackResponse(
             function (Http\IRequest $httpRequest, Http\IResponse $httpResponse): void {
                 if (preg_match('#^text/html(?:;|$)#', (string)$httpResponse->getHeader('Content-Type'))) {
-                    require __DIR__ . '/templates/Error/500.phtml';
+                    include __DIR__ . '/templates/Error/500.phtml';
                 }
             }
         );

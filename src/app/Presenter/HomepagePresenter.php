@@ -19,6 +19,7 @@ final class HomepagePresenter extends AbstractPresenter
 
     /**
      * If user is already logged in redirect him to projects view
+     *
      * @return void
      * @throws AbortException
      */
@@ -32,6 +33,7 @@ final class HomepagePresenter extends AbstractPresenter
 
     /**
      * Login form
+     *
      * @return LoginForm
      */
     protected function createComponentLoginForm(): LoginForm

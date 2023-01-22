@@ -16,7 +16,6 @@ use Nette\Utils\ArrayHash;
 
 final class LoginForm extends AbstractComponent
 {
-
     public function __construct(
         protected Translator $translator,
         private readonly AuthenticationInterface $authentication,
@@ -43,15 +42,14 @@ final class LoginForm extends AbstractComponent
     }
 
     /**
-     * @param Form $form
-     * @param ArrayHash $values
+     * @param  Form      $form
+     * @param  ArrayHash $values
      * @return void
      * @throws AbortException
      */
     public function formSucceeded(Form $form, ArrayHash $values): void
     {
         try {
-            /** @var SimpleIdentity $userIdentity */
             $userIdentity = $this->authentication->authenticate($values->username, $values->password);
             $this->user->login($userIdentity);
             $this->presenter->flashMessage($this->translator->trans("messages.successfullyLoggedIn"), "success");

@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class User
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: "integer")]
@@ -55,7 +54,7 @@ class User
     }
 
     /**
-     * @param string $username
+     * @param  string $username
      * @return User
      */
     public function setUsername(string $username): User
@@ -74,7 +73,7 @@ class User
     }
 
     /**
-     * @param string $email
+     * @param  string $email
      * @return User
      */
     public function setEmail(string $email): User
@@ -93,7 +92,7 @@ class User
     }
 
     /**
-     * @param string $password
+     * @param  string $password
      * @return User
      */
     public function setPassword(string $password): User
@@ -112,7 +111,7 @@ class User
     }
 
     /**
-     * @param bool $isEnabled
+     * @param  bool $isEnabled
      * @return User
      */
     public function setIsEnabled(bool $isEnabled): User
@@ -129,6 +128,4 @@ class User
     {
         return $this->registrationDate;
     }
-
-
 }

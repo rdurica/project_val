@@ -13,6 +13,7 @@ abstract class AbstractSecurePresenter extends AbstractPresenter
 {
     /**
      * Logout current user and clear identity.
+     *
      * @return void
      * @throws \Nette\Application\AbortException
      */
@@ -24,6 +25,7 @@ abstract class AbstractSecurePresenter extends AbstractPresenter
 
     /**
      * Ensure user is logged in
+     *
      * @return void
      * @throws \Nette\Application\AbortException
      */
@@ -35,5 +37,4 @@ abstract class AbstractSecurePresenter extends AbstractPresenter
         }
         $this->setLayout("layoutSecure");
     }
-
 }
