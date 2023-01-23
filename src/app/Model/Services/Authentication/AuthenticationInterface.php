@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Services\User;
+namespace App\Model\Services\Authentication;
 
 use Nette\Security\SimpleIdentity;
 

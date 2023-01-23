@@ -6,8 +6,9 @@ search:
 			- *Facade
 			- I*Form
 			- I*Grid
+			- *Manager
 
 services:
 	- App\Router\RouterFactory::createRouter
 	security.passwords: Nette\Security\Passwords(::PASSWORD_BCRYPT, [cost: 12])
-	- App\Model\Services\User\UserService
+	- App\Model\Services\Authentication\AuthenticationService

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Component\Form\Login;
 
 use App\Component\AbstractComponent;
-use App\Model\Services\User\AuthenticationInterface;
+use App\Model\Services\Authentication\AuthenticationInterface;
 use Contributte\Translation\Translator;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
