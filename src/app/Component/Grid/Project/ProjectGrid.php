@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace App\Component\Grid\Project;
 
 use App\Component\AbstractComponent;
-use App\Entity\Project;
-use App\Entity\User;
+use App\Model\Entity\Project;
 use Contributte\Translation\Translator;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Query\Expr\Join;
-use Nette;
+use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
 use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\DataGrid\DataSource\DoctrineDataSource;
-use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
 use Ublaboo\DataGrid\Exception\DataGridException;
 
 class ProjectGrid extends AbstractComponent

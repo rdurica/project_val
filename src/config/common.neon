@@ -37,7 +37,7 @@ nettrine.orm:
 
 nettrine.orm.attributes:
   mapping:
-   App\Entity: %appDir%/Entity
+   App\Model\Entity: %appDir%/Model/Entity
 
 nettrine.orm.cache:
 	defaultDriver: Doctrine\Common\Cache\PhpFileCache("%tempDir%/cache/nettrine.cache")

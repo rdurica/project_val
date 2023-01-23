@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace App\Component\Form\Login;
 
 use App\Component\AbstractComponent;
-use App\Services\User\AuthenticationInterface;
+use App\Model\Services\User\AuthenticationInterface;
 use Contributte\Translation\Translator;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
 use Nette\Security\AuthenticationException;
-use Nette\Security\SimpleIdentity;
 use Nette\Security\User;
 use Nette\Utils\ArrayHash;
 
