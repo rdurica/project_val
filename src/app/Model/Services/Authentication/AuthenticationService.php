@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exception\Model\Services\Authentication;
+namespace App\Model\Services\Authentication;
 
-use App\Exception\Model\Manager\UserManager;
+use App\Model\Manager\UserManager;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
 use Nette\Security\Passwords;

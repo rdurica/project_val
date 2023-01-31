@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Exception\Model\Entity;
+namespace App\Model\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exception\Model\Manager;
+namespace App\Model\Manager;
 
-use App\Exception\Model\Entity\User;
+use App\Model\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Nette\Security\Passwords;

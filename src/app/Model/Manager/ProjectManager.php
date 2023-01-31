@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exception\Model\Manager;
+namespace App\Model\Manager;
 
-use App\Exception\Model\Entity\Project;
+use App\Model\Entity\Project;
 use Doctrine\ORM\EntityRepository;
 
 class ProjectManager extends Manager

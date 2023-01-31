@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Component\Grid\Project;
 
 use App\Component\Component;
-use App\Exception\Model\Entity\Project;
+use App\Model\Entity\Project;
 use Contributte\Translation\Translator;
 use Doctrine\ORM\EntityManagerInterface;
 use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
