@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Component\Form\Login;
 
-use App\Component\AbstractComponent;
-use App\Model\Services\Authentication\AuthenticationInterface;
+use App\Component\Component;
+use App\Exception\Model\Services\Authentication\AuthenticationService;
 use Contributte\Translation\Translator;
 use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
@@ -13,11 +13,11 @@ use Nette\Security\AuthenticationException;
 use Nette\Security\User;
 use Nette\Utils\ArrayHash;
 
-final class LoginForm extends AbstractComponent
+final class LoginForm extends Component
 {
     public function __construct(
         protected Translator $translator,
-        private readonly AuthenticationInterface $authentication,
+        private readonly AuthenticationService $authentication,
         private readonly User $user
     ) {
         parent::__construct($translator);
@@ -28,7 +28,8 @@ final class LoginForm extends AbstractComponent
         $form = new Form();
         $form->addText("username", $this->translator->trans("user.username"))
             ->setRequired()
-            ->setHtmlAttribute("class", "form-control")->setHtmlAttribute("id", "floatingInput");
+            ->setHtmlAttribute("class", "form-control")
+            ->setHtmlAttribute("id", "floatingInput");
         $form->addPassword("password", $this->translator->trans("user.password"))
             ->setRequired()
             ->setHtmlAttribute("class", "form-control");
@@ -41,9 +42,6 @@ final class LoginForm extends AbstractComponent
     }
 
     /**
-     * @param  Form      $form
-     * @param  ArrayHash $values
-     * @return void
      * @throws AbortException
      */
     public function formSucceeded(Form $form, ArrayHash $values): void
@@ -52,10 +50,10 @@ final class LoginForm extends AbstractComponent
             $userIdentity = $this->authentication->authenticate($values->username, $values->password);
             $this->user->login($userIdentity);
             $this->presenter->flashMessage($this->translator->trans("messages.successfullyLoggedIn"), "success");
-            $this->getPresenter()->redirect("Projects:");
+            $this->presenter->redirect("Projects:");
         } catch (AuthenticationException $authenticationException) {
             $this->presenter->flashMessage($this->translator->trans("messages.incorrectUsernameOrPassword"), "danger");
-            $this->redirect("this");
+            $this->presenter->redirect("this");
         }
     }
 

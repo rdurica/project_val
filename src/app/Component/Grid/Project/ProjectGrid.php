@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Component\Grid\Project;
 
-use App\Component\AbstractComponent;
-use App\Model\Entity\Project;
+use App\Component\Component;
+use App\Exception\Model\Entity\Project;
 use Contributte\Translation\Translator;
 use Doctrine\ORM\EntityManagerInterface;
 use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
@@ -13,7 +13,7 @@ use Ublaboo\DataGrid\DataGrid;
 use Ublaboo\DataGrid\DataSource\DoctrineDataSource;
 use Ublaboo\DataGrid\Exception\DataGridException;
 
-class ProjectGrid extends AbstractComponent
+class ProjectGrid extends Component
 {
     public function __construct(
         protected Translator $translator,
@@ -36,11 +36,12 @@ class ProjectGrid extends AbstractComponent
         $grid->addColumnText("title", "title")->setFilterText();
         $grid->addColumnDateTime("projectStartDate", "projectStartDate")->setFilterDate();
         $grid->addColumnDateTime("projectEndDate", "projectEndDate")->setFilterDate();
-        $grid->addColumnText("expectedCost", "expectedCost")->setRenderer(
-            function (Project $project) {
-                return "$" . $project->getExpectedCost();
-            }
-        )->setFilterText();
+        $grid->addColumnText("expectedCost", "expectedCost")
+            ->setRenderer(
+                function (Project $project) {
+                    return "$" . $project->expectedCost;
+                }
+            )->setFilterText();
         $grid->addAction("detail", "Detail", "Projects:detail")
             ->setIcon("eye")
             ->setClass("btn btn-xs btn-primary");

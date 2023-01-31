@@ -6,11 +6,11 @@ namespace App\Presenter;
 
 use App\Component\Form\Project\IProjectForm;
 use App\Component\Form\Project\ProjectForm;
-use Nette\DI\Attributes\Inject;
 use App\Component\Grid\Project\IProjectGrid;
 use App\Component\Grid\Project\ProjectGrid;
+use Nette\DI\Attributes\Inject;
 
-final class ProjectsPresenter extends AbstractSecurePresenter
+final class ProjectsPresenter extends SecurePresenter
 {
     #[Inject]
     public IProjectGrid $projectGrid;

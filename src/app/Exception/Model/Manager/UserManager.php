@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Manager;
+namespace App\Exception\Model\Manager;
 
-use App\Model\Entity\User;
+use App\Exception\Model\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Nette\Security\Passwords;
 
-class UserManager extends AbstractManager
+class UserManager extends Manager
 {
     public function __construct(
         protected EntityManagerInterface $em,
@@ -21,9 +21,9 @@ class UserManager extends AbstractManager
     public function createAccount(string $username, string $email, string $plainPassword): User
     {
         $user = new User();
-        $user->setEmail($email)
-            ->setUsername($username)
-            ->setPassword($this->passwords->hash($plainPassword));
+        $user->email = $email;
+        $user->username = $username;
+        $user->password = $this->passwords->hash($plainPassword);
 
         $this->em->persist($user);
         $this->em->flush();

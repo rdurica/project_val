@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace App\Presenter;
 
 use JetBrains\PhpStorm\NoReturn;
+use Nette\Application\AbortException;
+use Nette\Application\UI\Presenter;
 
 /**
  * All presenter which require some authentication needs to inherit from this
  */
-abstract class AbstractSecurePresenter extends AbstractPresenter
+abstract class SecurePresenter extends Presenter
 {
     /**
      * Logout current user and clear identity.
-     *
-     * @return void
-     * @throws \Nette\Application\AbortException
+     * @throws AbortException
      */
-    #[NoReturn] public function actionLogOut(): void
+    #[NoReturn] protected function actionLogOut(): void
     {
         $this->getUser()->logout(true);
         $this->redirect("Homepage:");
@@ -25,9 +25,7 @@ abstract class AbstractSecurePresenter extends AbstractPresenter
 
     /**
      * Ensure user is logged in
-     *
-     * @return void
-     * @throws \Nette\Application\AbortException
+     * @throws AbortException
      */
     protected function startup(): void
     {

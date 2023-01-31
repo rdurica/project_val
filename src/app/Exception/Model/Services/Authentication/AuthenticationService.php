@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Services\Authentication;
+namespace App\Exception\Model\Services\Authentication;
 
-use App\Model\Manager\UserManager;
+use App\Exception\Model\Manager\UserManager;
 use Nette\Security\AuthenticationException;
 use Nette\Security\Authenticator;
 use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 
-final class AuthenticationService implements Authenticator, AuthenticationInterface
+final readonly class AuthenticationService implements Authenticator
 {
     public function __construct(
         private UserManager $userManager,
@@ -20,9 +20,6 @@ final class AuthenticationService implements Authenticator, AuthenticationInterf
 
 
     /**
-     * @param string $user username
-     * @param string $password
-     * @return SimpleIdentity
      * @throws AuthenticationException
      */
     public function authenticate(string $user, string $password): SimpleIdentity
@@ -32,13 +29,17 @@ final class AuthenticationService implements Authenticator, AuthenticationInterf
             throw new AuthenticationException("User not found");
         }
 
-        if (!$this->passwords->verify($password, $userEntity->getPassword())) {
+        if (!$this->passwords->verify($password, $userEntity->password)) {
             throw new AuthenticationException("Incorrect Password");
         }
 
-        return new SimpleIdentity($userEntity->getId(), roles: [], data: [
-            "username" => $userEntity->getUsername(),
-            "email" => $userEntity->getEmail(),
+        if (!$userEntity->isEnabled) {
+            throw new AuthenticationException("Account is disabled");
+        }
+
+        return new SimpleIdentity($userEntity->id, roles: [], data: [
+            "username" => $userEntity->username,
+            "email" => $userEntity->email,
         ]);
     }
 }
